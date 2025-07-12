@@ -277,7 +277,7 @@
             plugins: {
                 legend: {
                     position: 'bottom',
-                    labels: { color: 'white', font: { size: 14 } } // Legend font color white
+                    labels: { color: 'white', font: { size: 14 } }
                 },
                 tooltip: {
                     enabled: true,
@@ -291,17 +291,17 @@
             },
             scales: {
                 x: {
-                    ticks: { color: 'white', font: { size: 12 } }, // X-axis ticks font color white
+                    ticks: { color: 'white', font: { size: 12 } },
                     grid: { color: gridColor }
                 },
                 y: {
-                    ticks: { color: 'white', font: { size: 12 } }, // Y-axis ticks font color white
+                    ticks: { color: 'white', font: { size: 12 } },
                     grid: { color: gridColor }
                 },
                 r: {
                     angleLines: { color: gridColor },
                     grid: { color: gridColor },
-                    pointLabels: { color: 'white', font: { size: 14 } }, // Radar point labels font color white
+                    pointLabels: { color: 'white', font: { size: 14 } },
                     ticks: {
                         display: false,
                         max: 5,
@@ -327,7 +327,7 @@
                 datasets: [{
                     label: 'Severity of Challenge (Rated by Industry Leaders)',
                     data: [90, 85, 80, 75, 70, 65],
-                    backgroundColor: [accentCyan, accentDarkGreen, accentCyan, accentDarkGreen, accentCyan, accentDarkGreen],
+                    backgroundColor: 'white', // Changed to white
                     borderColor: 'rgba(0,0,0,0)',
                     borderWidth: 1,
                     borderRadius: 5,
