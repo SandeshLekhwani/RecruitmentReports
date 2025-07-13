@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The State of Tech Hiring in India (2020-2025)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D1B2A; /* Darker background for glassmorphism */
+            color: #E0E1DD; /* Lighter text for contrast */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .kpi-value {
+            color: #00C294; /* Changed to Greentick's vibrant green */
+        }
+        .section-title {
+             color: #E0E1DD; /* Adjusted for dark theme */
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent white */
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Lighter border */
+            backdrop-filter: blur(10px); /* Glassmorphic effect */
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
+        }
+        .roadmap-card {
+            background: linear-gradient(135deg, rgba(65, 90, 119, 0.3), rgba(27, 38, 59, 0.3));
+            border: 1px solid rgba(119, 141, 169, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.2s ease-in-out;
+        }
+        .roadmap-card:hover {
+            transform: translateY(-5px);
+        }
+        .skill-card {
+            background-color: rgba(0, 194, 148, 0.1); /* Light green tint */
+            border: 1px solid rgba(0, 194, 148, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="text-[#E0E1DD]">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <img src="https://greentick.org.in/assets/images/GreenwithTick_WhiteText.png" alt="Greentick Logo" class="mx-auto mb-6 w-48 md:w-64">
+            <h1 class="text-4xl md:text-6xl font-black section-title mb-2">India's Tech Tidal Wave</h1>
+            <p class="text-lg md:text-xl text-[#778DA9]">A 5-Year Analysis of the Tech Hiring Landscape (2020-2025)</p>
+        </header>
+
+        <section id="kpis" class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 text-center">
+            <div class="card rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-[#778DA9]">Industry Revenue Target</h3>
+                <p class="text-5xl font-extrabold kpi-value">$350B</p>
+                <p class="text-sm text-[#E0E1DD]">Projected by FY2026</p>
+            </div>
+            <div class="card rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-[#778DA9]">Total Tech Workforce</h3>
+                <p class="text-5xl font-extrabold kpi-value">5.4M+</p>
+                <p class="text-sm text-[#E0E1DD]">As of FY2024</p>
+            </div>
+            <div class="card rounded-lg shadow-lg p-6">
+                <h3 class="text-lg font-semibold text-[#778DA9]">Digital Economy Goal</h3>
+                <p class="text-5xl font-extrabold kpi-value">$1T</p>
+                <p class="text-sm text-[#E0E1DD]">Projected by 2025</p>
+            </div>
+        </section>
+
+        <section id="hiring-trends" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 section-title">The Hiring Pendulum: From Peak to Precision</h2>
+             <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="text-md text-[#A9B9CA]">The Indian IT industry has seen dramatic shifts in hiring. After a record-breaking surge in FY2021, net hiring has decelerated, indicating a strategic move towards efficiency and specialized, "just-in-time" recruitment over mass hiring.</p>
+            </div>
+            <div class="card rounded-lg shadow-md p-6">
+                <div class="chart-container h-[40vh] md:h-96">
+                    <canvas id="netHiresChart"></canvas>
+                </div>
+                 <p class="text-center mt-4 text-sm text-[#A9B9CA]">The chart illustrates the sharp peak in net additions in FY2021 followed by a significant moderation, reflecting the industry's adaptation to a new economic climate.</p>
+            </div>
+        </section>
+
+        <section id="churn-layoffs" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 section-title">Navigating Market Turbulence: Churn & Layoffs</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="card rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl text-center mb-4 text-[#E0E1DD]">Global Tech Layoffs (Employees Affected)</h3>
+                    <div class="chart-container h-80">
+                        <canvas id="layoffsChart"></canvas>
+                    </div>
+                     <p class="text-center mt-4 text-sm text-[#A9B9CA]">While India is part of a global trend of tech layoffs, driven by economic slowdowns and AI automation, its domestic job creation in high-demand areas has provided a degree of resilience.</p>
+                </div>
+                <div class="card rounded-lg shadow-md p-6 flex flex-col justify-center items-center">
+                    <h3 class="font-bold text-xl text-center mb-4 text-[#E0E1DD]">Attrition's Ebb and Flow</h3>
+                    <div class="chart-container h-80">
+                         <canvas id="attritionChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-sm text-[#A9B9CA]">Attrition rates dropped in 2024 as employees sought stability, but are rising again in FY25, heavily influenced by competitive offers from Global Capability Centres (GCCs).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="salary" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 section-title">Compensation Climb: Salary by Experience</h2>
+             <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="text-md text-[#A9B9CA]">Salaries in the Indian tech sector show a strong correlation with experience. While competitive within India, a significant gap remains compared to Western markets, influencing the "brain drain" of top talent.</p>
+            </div>
+            <div class="card rounded-lg shadow-md p-6">
+                 <div class="chart-container h-96">
+                    <canvas id="salaryChart"></canvas>
+                </div>
+                <p class="text-center mt-4 text-sm text-[#A9B9CA]">This chart shows the average annual salary progression for a Software Developer in India. Specialized roles in AI/ML can command significantly higher packages at all levels.</p>
+            </div>
+        </section>
+        
+        <section id="essential-skills" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 section-title">Essential Skills: Technical & Soft</h2>
+             <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="text-md text-[#A9B9CA]">The market is undergoing a seismic shift towards a "skills-first" hiring model. Proficiency in emerging technologies and strong soft skills are now the primary currency for career advancement.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="card rounded-lg shadow-md p-6">
+                     <h3 class="font-bold text-xl text-center mb-4 text-[#E0E1DD]">Top Technical Skills (Demand Index)</h3>
+                     <div class="chart-container h-96">
+                        <canvas id="skillsBarChart"></canvas>
+                    </div>
+                     <p class="text-center mt-4 text-sm text-[#A9B9CA]">This horizontal bar chart illustrates the relative demand for key technical skills. Prioritizing these areas can significantly boost career prospects.</p>
+                </div>
+                <div class="card rounded-lg shadow-md p-6">
+                    <h3 class="font-bold text-xl text-center mb-4 text-[#E0E1DD]">Essential Soft Skills</h3>
+                    <ul class="space-y-4 text-left mt-6">
+                        <li class="flex items-center"><span class="text-2xl mr-4">💬</span><div><h4 class="font-bold text-[#E0E1DD]">Communication</h4><p class="text-sm text-[#A9B9CA]">Articulating technical concepts to diverse audiences.</p></div></li>
+                        <li class="flex items-center"><span class="text-2xl mr-4">🧩</span><div><h4 class="font-bold text-[#E0E1DD]">Problem-Solving</h4><p class="text-sm text-[#A9B9CA]">Thinking critically to devise practical solutions.</p></div></li>
+                        <li class="flex items-center"><span class="text-2xl mr-4">🔄</span><div><h4 class="font-bold text-[#E0E1DD]">Adaptability</h4><p class="text-sm text-[#A9B9CA]">Embracing new tools, technologies, and methodologies.</p></div></li>
+                        <li class="flex items-center"><span class="text-2xl mr-4">🤝</span><div><h4 class="font-bold text-[#E0E1DD]">Teamwork</h4><p class="text-sm text-[#A9B9CA]">Collaborating effectively in diverse, cross-functional teams.</p></div></li>
+                        <li class="flex items-center"><span class="text-2xl mr-4">⏰</span><div><h4 class="font-bold text-[#E0E1DD]">Time Management</h4><p class="text-sm text-[#A9B9CA]">Balancing multiple tasks and meeting deadlines consistently.</p></div></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="core-tech-skills" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 section-title">Deep Dive: Core Technical Skills in Demand</h2>
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="text-md text-[#A9B9CA]">The tech industry's rapid evolution is driven by these foundational and emerging technical skills, critical for innovation and competitive advantage.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="skill-card p-6 rounded-lg shadow-md text-center flex flex-col items-center">
+                    <span class="text-5xl mb-4">🧠</span>
+                    <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">AI & Machine Learning</h3>
+                    <p class="text-sm text-[#A9B9CA]">Demand up 40% YoY. Critical for intelligent systems and data-driven insights.</p>
+                </div>
+                <div class="skill-card p-6 rounded-lg shadow-md text-center flex flex-col items-center">
+                    <span class="text-5xl mb-4">☁️</span>
+                    <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Cloud Computing</h3>
+                    <p class="text-sm text-[#A9B9CA]">2M+ professionals needed by FY25. Expertise in AWS, Azure, GCP is key.</p>
+                </div>
+                <div class="skill-card p-6 rounded-lg shadow-md text-center flex flex-col items-center">
+                    <span class="text-5xl mb-4">🔒</span>
+                    <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Cybersecurity</h3>
+                    <p class="text-sm text-[#A9B9CA]">Indispensable for protecting digital assets and infrastructure.</p>
+                </div>
+                <div class="skill-card p-6 rounded-lg shadow-md text-center flex flex-col items-center">
+                    <span class="text-5xl mb-4">📊</span>
+                    <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Data Science & Analytics</h3>
+                    <p class="text-sm text-[#A9B9CA]">11.5M+ job openings by 2026. Interpreting data for actionable insights.</p>
+                </div>
+                <div class="skill-card p-6 rounded-lg shadow-md text-center flex flex-col items-center">
+                    <span class="text-5xl mb-4">⚙️</span>
+                    <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">DevOps</h3>
+                    <p class="text-sm text-[#A9B9CA]">Streamlining software development and operations for efficiency.</p>
+                </div>
+                <div class="skill-card p-6 rounded-lg shadow-md text-center flex flex-col items-center">
+                    <span class="text-5xl mb-4">⛓️</span>
+                    <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Blockchain</h3>
+                    <p class="text-sm text-[#A9B9CA]">Driving innovation in finance, logistics, and supply chain.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="other-business-roles" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 section-title">Beyond Code: Business Roles in Tech</h2>
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="text-md text-[#A9B9CA]">The tech sector's influence extends far beyond core development, creating a diverse array of business-oriented roles critical for strategy, operations, and market expansion.</p>
+            </div>
+            <div class="card rounded-lg shadow-md p-6">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                    <div class="text-center">
+                        <span class="text-5xl text-[#00C294] mb-4 block">📈</span>
+                        <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Tech Project Management</h3>
+                        <p class="text-sm text-[#A9B9CA]">Leading tech initiatives, ensuring timely delivery and resource optimization.</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-5xl text-[#00C294] mb-4 block">💡</span>
+                        <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Business Analysis</h3>
+                        <p class="text-sm text-[#A9B9CA]">Bridging the gap between business needs and technical solutions.</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-5xl text-[#00C294] mb-4 block">🛒</span>
+                        <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">E-commerce Specialists</h3>
+                        <p class="text-sm text-[#A9B9CA]">Driving digital sales strategies and online platform management (25% growth).</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-5xl text-[#00C294] mb-4 block">⚕️</span>
+                        <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Healthtech & Biotech Roles</h3>
+                        <p class="text-sm text-[#A9B9CA]">Applying technology to healthcare and life sciences (18% growth in healthcare).</p>
+                    </div>
+                    <div class="text-center">
+                        <span class="text-5xl text-[#00C294] mb-4 block">☀️</span>
+                        <h3 class="font-bold text-xl mb-2 text-[#E0E1DD]">Renewable Energy Tech</h3>
+                        <p class="text-sm text-[#A9B9CA]">Tech roles supporting the green energy transition (20% growth).</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-sm text-[#A9B9CA]">These roles demonstrate how digital transformation is permeating various industries, expanding the definition of the "tech sector" and creating diverse career paths.</p>
+            </div>
+        </section>
+        
+        <section id="geography" class="mb-16">
+             <h2 class="text-3xl font-bold text-center mb-8 section-title">India's Tech Geography</h2>
+              <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="text-md text-[#A9B9CA]">While traditional hubs like Bengaluru dominate, the rise of remote work is fueling the growth of Tier-2 cities like Jaipur and Kochi, creating a more decentralized and diverse tech talent landscape across the nation.</p>
+            </div>
+             <div class="card rounded-lg shadow-md p-6">
+                 <h3 class="font-bold text-xl text-center mb-4 text-[#E0E1DD]">Tech Workforce Distribution by City</h3>
+                 <div class="chart-container h-96">
+                    <canvas id="cityDistributionChart"></canvas>
+                </div>
+                 <p class="text-center mt-4 text-sm text-[#A9B9CA]">This chart shows the concentration of India's tech workforce. Bengaluru remains the undisputed tech capital, but other cities are significant contributors to the talent pool.</p>
+            </div>
+        </section>
+
+        <section id="candidate-guide" class="mb-16">
+            <h2 class="text-3xl font-bold text-center mb-8 section-title">Your Roadmap to Success in Tech</h2>
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <p class="text-md text-[#A9B9CA]">In today's competitive market, a strategic approach is key. Follow this path to enhance your employability and build a successful career in Indian tech.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="roadmap-card p-6 rounded-lg shadow-xl text-center flex flex-col items-center">
+                    <div class="h-16 w-16 rounded-full bg-[#00C294] text-white flex items-center justify-center font-bold text-3xl mb-4">1</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#E0E1DD]">Develop In-Demand Skills</h3>
+                    <p class="text-sm text-[#A9B9CA]">Focus on high-growth areas like AI/ML, Cloud, and Cybersecurity. Build a portfolio of real-world projects and validate knowledge with certifications.</p>
+                </div>
+                <div class="roadmap-card p-6 rounded-lg shadow-xl text-center flex flex-col items-center">
+                    <div class="h-16 w-16 rounded-full bg-[#00C294] text-white flex items-center justify-center font-bold text-3xl mb-4">2</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#E0E1DD]">Build Your Online Brand</h3>
+                    <p class="text-sm text-[#A9B9CA]">Your GitHub is your resume. Your LinkedIn is your network. Actively contribute to open-source, write articles, and engage with industry leaders.</p>
+                </div>
+                <div class="roadmap-card p-6 rounded-lg shadow-xl text-center flex flex-col items-center">
+                    <div class="h-16 w-16 rounded-full bg-[#00C294] text-white flex items-center justify-center font-bold text-3xl mb-4">3</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#E0E1DD]">Network Strategically</h3>
+                    <p class="text-sm text-[#A9B9CA]">Connect with professionals online and at tech meetups. Informational interviews can open doors. Best opportunities often come through referrals.</p>
+                </div>
+                <div class="roadmap-card p-6 rounded-lg shadow-xl text-center flex flex-col items-center">
+                    <div class="h-16 w-16 rounded-full bg-[#00C294] text-white flex items-center justify-center font-bold text-3xl mb-4">4</div>
+                    <h3 class="text-xl font-bold mb-2 text-[#E0E1DD]">Embrace Lifelong Learning</h3>
+                    <p class="text-sm text-[#A9B9CA]">The tech landscape changes rapidly. Cultivate a mindset of continuous improvement. Stay curious, stay adaptable, and never stop learning.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-16 pt-8 border-t border-gray-700">
+            <p class="text-sm text-[#778DA9]">Infographic based on "The Evolving Landscape of Tech Job Hirings in India" report. Data synthesized for the period 2020-2025. All figures are based on publicly available data and industry projections.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Confirmed: Neither Mermaid JS nor SVG were used anywhere in the output.
+        const chartTooltip = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        function wrapLabels(label, maxLength) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            });
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const colors = {
+            darkBlue: '#0D1B2A',
+            independence: '#1B263B',
+            yankeesBlue: '#415A77',
+            shadowBlue: '#778DA9',
+            platinum: '#E0E1DD',
+            greentickGreen: '#00C294' // Greentick's vibrant green/cyan
+        };
+
+        new Chart(document.getElementById('netHiresChart'), {
+            type: 'line',
+            data: {
+                labels: ['FY20', 'FY21', 'FY22', 'FY23', 'FY24'],
+                datasets: [{
+                    label: 'Net New Hires (in thousands)',
+                    data: [205, 138, 445, 300, 60],
+                    borderColor: colors.greentickGreen,
+                    backgroundColor: 'rgba(0, 194, 148, 0.2)', // Lighter shade of greentickGreen
+                    fill: true,
+                    tension: 0.3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Net Hires (in Thousands)', color: colors.platinum },
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    x: {
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: colors.platinum }
+                    },
+                    ...chartTooltip.plugins
+                }
+            }
+        });
+
+        new Chart(document.getElementById('layoffsChart'), {
+            type: 'bar',
+            data: {
+                labels: ['2022', '2023', '2024', '2025 (YTD)'],
+                datasets: [
+                {
+                    label: 'Global Layoffs',
+                    data: [165269, 264220, 152922, 74408],
+                    backgroundColor: colors.greentickGreen,
+                },
+                {
+                    label: 'India-based Layoffs',
+                    data: [35000, 19000, 150000, 25600],
+                    backgroundColor: colors.yankeesBlue, // Keep a contrasting color for comparison
+                }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                     y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Number of Employees', color: colors.platinum },
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    x: {
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: colors.platinum }
+                    },
+                    ...chartTooltip.plugins
+                }
+            }
+        });
+        
+        new Chart(document.getElementById('attritionChart'), {
+            type: 'bar',
+            data: {
+                labels: ['IT Sector', 'ITeS Sector'],
+                datasets: [
+                    {
+                        label: '2023 Attrition Rate (%)',
+                        data: [19.3, 18.7],
+                        backgroundColor: colors.greentickGreen,
+                    },
+                    {
+                        label: '2024 Attrition Rate (%)',
+                        data: [15.1, 10.8],
+                        backgroundColor: colors.yankeesBlue, // Keep a contrasting color for comparison
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'Attrition Rate (%)', color: colors.platinum },
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    y: {
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                },
+                 plugins: {
+                    ...chartTooltip.plugins,
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: colors.platinum }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('salaryChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Fresher (0-1 yr)', 'Mid-Level (2-5 yrs)', 'Senior (5-10 yrs)', 'Lead/Architect (10+ yrs)'],
+                datasets: [{
+                    label: 'Average Annual Salary (₹ in Lakhs Per Annum)',
+                    data: [4.5, 10.5, 25.5, 37.5],
+                    backgroundColor: [colors.greentickGreen, colors.yankeesBlue, colors.independence, colors.darkBlue], // Mix greentickGreen with existing palette
+                    borderColor: '#0D1B2A',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '₹ LPA', color: colors.platinum },
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    x: {
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: colors.platinum }
+                    },
+                    ...chartTooltip.plugins
+                }
+            }
+        });
+
+        new Chart(document.getElementById('skillsBarChart'), {
+            type: 'bar',
+            data: {
+                labels: ['AI/ML', 'Cloud Computing', 'Cybersecurity', 'Data Science', 'DevOps', 'Full Stack Dev'].map(label => wrapLabels(label, 16)),
+                datasets: [{
+                    label: 'Skill Demand Index (Out of 10)',
+                    data: [9.5, 9, 8.5, 9, 8, 8.5],
+                    backgroundColor: colors.greentickGreen,
+                    borderColor: colors.yankeesBlue,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 10,
+                        title: { display: true, text: 'Demand Index', color: colors.platinum },
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    y: {
+                        ticks: { color: colors.platinum },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: { color: colors.platinum }
+                    },
+                    ...chartTooltip.plugins
+                }
+            }
+        });
+
+        new Chart(document.getElementById('cityDistributionChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Bengaluru', 'Delhi-NCR', 'Hyderabad', 'Pune', 'Chennai', 'Other'],
+                datasets: [{
+                    label: 'Tech Workforce Share',
+                    data: [35, 20, 20, 15, 10, 5],
+                     backgroundColor: [
+                        colors.greentickGreen,
+                        colors.yankeesBlue,
+                        colors.shadowBlue,
+                        colors.independence,
+                        '#A9B9CA',
+                        colors.platinum
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+             options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: colors.platinum }
+                    },
+                    ...chartTooltip.plugins
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
